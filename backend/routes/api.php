@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\ApiAuthMiddleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +14,14 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::post('registro', 'UserController@register');
+Route::post('login', 'UserController@login');
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Rutas para el usuario
+Route::put('user/update', 'UserController@update');
+
+//Routes for task
+Route::resource('task','TaskController');
+
+//Routes for etiquet
+Route::resource('etiqueta', 'EtiquetaController');

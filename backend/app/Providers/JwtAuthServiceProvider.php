@@ -3,27 +3,26 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Schema\Builder;
 
-class AppServiceProvider extends ServiceProvider
+class JwtAuthServiceProvider extends ServiceProvider
 {
     /**
-     * Register any application services.
+     * Register services.
      *
      * @return void
      */
     public function register()
     {
-        //
+        require_once app_path().'/Helpers/JwtAuth.php';
     }
 
     /**
-     * Bootstrap any application services.
+     * Bootstrap services.
      *
      * @return void
      */
     public function boot()
     {
-        Builder::defaultStringLength(191);
+        //
     }
 }
