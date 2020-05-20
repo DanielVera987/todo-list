@@ -99,7 +99,11 @@ class UserController extends Controller
             }
         }
 
-        return response()->json($signup, 200);
+        if(is_array($signup)){
+            return response()->json($signup, $signup['code']);
+        }else{
+            return response()->json($signup, 200);
+        }
 
     }
 
