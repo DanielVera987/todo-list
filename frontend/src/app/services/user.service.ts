@@ -36,4 +36,16 @@ export class UserService {
 
     return this._http.post(this.url + 'registro', params, {headers:headers});
   }
+
+  getIdentity(){
+    let identity = JSON.parse(localStorage.getItem('identity'));
+
+    if(identity && identity != "Undefined"){
+          this.identity = identity;
+    }else{
+          this.identity = null;
+    }
+
+    return this.identity;
+  }
 }

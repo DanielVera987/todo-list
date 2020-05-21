@@ -1,0 +1,91 @@
+<div class="container-fluid menu">
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand titulo">TO-DO LIST</a>
+        <div class="float-right saludo">Hola, Daniel Vera</div>
+    </nav>
+</div>
+<div class="container-fluid">
+    <div class="row wrapper min-vh-100 flex-column flex-sm-row">
+        
+        <aside class="col-12 col-sm-3 p-0 bg-light flex-shrink-1">
+            <nav class="navbar navbar-expand-sm navbar-light bg-light align-items-start flex-sm-column flex-row">
+                <a href class="navbar-toggler" data-toggle="collapse" data-target=".sidebar">
+                    <span class="navbar-toggler-icon"></span>
+                </a>
+                <div class="collapse navbar-collapse sidebar">
+                    <ul class="flex-column navbar-nav w-100 justify-content-between">
+                        <li class="nav-item">
+                            <p class="ml-1 subtitulo">Etiqueta</p>
+                        </li>
+                        <li class="nav-item">
+                            <div class="nav-link">
+                                <input type="checkbox" name="" id="">
+                                <span class=""> Importante</span>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div class="nav-link">
+                                <input type="checkbox" name="" id="">
+                                <span class=""> Escuela</span>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div class="nav-link">
+                                <input type="checkbox" name="" id="">
+                                <span class=""> Ejercicio</span>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div class="nav-link pl-4">
+                                <i class="fa fa-plus fa-fw"></i> Agregar Etiqueta
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+        <main class="col bg-faded py-3 main">
+            <div class="task">
+                <div class="subtitulo">TO-DO LIST</div>
+                <div class="float-right">
+                    <i class="fa fa-plus fa-fw"></i> Agregar Tarea
+                </div><br>
+                <br>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="" id=""> Hacer la comida
+                            </td>
+                            <td scope="row">
+                                <span class="etiqueta" style="background: #FF8585;">
+                                    Importante
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="" id=""> Hacer ejercicio
+                            </td>
+                            <td scope="row">
+                                <span class="etiqueta" style="background: #44D5FB;">
+                                    Ejercicio
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="" id=""> Hacer la tarea
+                            </td>
+                            <td scope="row">
+                                <span class="etiqueta" style="background: #E9D522;">
+                                    Escuela
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</div>

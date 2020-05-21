@@ -7,12 +7,17 @@ import { routing, appRoutingProviders } from './app.routing';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+
+import {UserService} from './services/user.service';
+import { IdentityGuard } from './services/identity.guard';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +26,9 @@ import { RegisterComponent } from './components/register/register.component';
     HttpClientModule
   ],
   providers: [
-    appRoutingProviders
+    appRoutingProviders,
+    UserService,
+    IdentityGuard
   ],
   bootstrap: [AppComponent]
 })

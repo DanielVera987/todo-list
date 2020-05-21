@@ -1,0 +1,36 @@
+.titulo{
+    font-weight: 700;
+}
+.subtitulo{
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.saludo{
+    color: #ffffff;
+    font-weight: 400;
+}
+
+.etiqueta{
+    padding: 10px;
+    border-radius: 5px;
+}
+.main{
+    background: #f8f9fa;
+}
+
+.task{
+    margin: 20px auto;
+    width: 98%;
+    background: #ffffff;
+    border-radius: 5px;
+    padding: 20px;
+    border: 1px solid #eeeeee; 
+}
+.fa-plus{
+    color: #19BF4B;
+}
+
+.menu{
+    padding: 0;
+}
