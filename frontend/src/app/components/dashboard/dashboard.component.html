@@ -17,26 +17,14 @@
                         <li class="nav-item">
                             <p class="ml-1 subtitulo">Etiqueta</p>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" *ngFor="let etiqueta of etiquetas">
                             <div class="nav-link">
-                                <input type="checkbox" name="" id="">
-                                <span class=""> Importante</span>
+                                <i class="fa fa-close fa-fw" (click)="deleteEtiqueta(etiqueta.id)" style="color: #c72109;"></i>
+                                <span class=""> {{etiqueta.nombre}}</span>
                             </div>
                         </li>
                         <li class="nav-item">
-                            <div class="nav-link">
-                                <input type="checkbox" name="" id="">
-                                <span class=""> Escuela</span>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <div class="nav-link">
-                                <input type="checkbox" name="" id="">
-                                <span class=""> Ejercicio</span>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <div class="nav-link pl-4">
+                            <div class="nav-link pl-4" data-toggle="modal" data-target="#newEtiqueta">
                                 <i class="fa fa-plus fa-fw"></i> Agregar Etiqueta
                             </div>
                         </li>
@@ -47,39 +35,20 @@
         <main class="col bg-faded py-3 main">
             <div class="task">
                 <div class="subtitulo">TO-DO LIST</div>
-                <div class="float-right">
+                <div class="float-right" data-toggle="modal" data-target="#newTask">
                     <i class="fa fa-plus fa-fw"></i> Agregar Tarea
                 </div><br>
                 <br>
                 <table class="table">
                     <tbody>
-                        <tr>
+                        <tr *ngFor="let task of tasks">
                             <td>
-                                <input type="checkbox" name="" id=""> Hacer la comida
+                                <i class="fa fa-check fa-fw" (click)="deleteTask(task.id)" style="color: #19bf4b;"></i>
+                                {{task.description}}
                             </td>
                             <td scope="row">
-                                <span class="etiqueta" style="background: #FF8585;">
-                                    Importante
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox" name="" id=""> Hacer ejercicio
-                            </td>
-                            <td scope="row">
-                                <span class="etiqueta" style="background: #44D5FB;">
-                                    Ejercicio
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox" name="" id=""> Hacer la tarea
-                            </td>
-                            <td scope="row">
-                                <span class="etiqueta" style="background: #E9D522;">
-                                    Escuela
+                                <span class="etiqueta" style="background: {{task.etiqueta.color}};">
+                                    {{task.etiqueta.nombre}}
                                 </span>
                             </td>
                         </tr>
@@ -87,5 +56,112 @@
                 </table>
             </div>
         </main>
+    </div>
+</div>
+<div class="modal fade" id="newEtiqueta" tabindex="-1" role="dialog" aria-labelledby="newEtiquetaLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newEtiquetaLabel">Nueva Etiqueta</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form #etiquetaForm="ngForm" (ngSubmit)="onSubmit(etiquetaForm)">
+            <div class="modal-body">
+                <div class="container">
+                    <div class="form-group">
+                        <div *ngIf="status == 'success'" class="alert alert-success" role="alert">
+                            <strong>Nueva Etiqueta Creada :)</strong>
+                        </div>
+
+                        <div *ngIf="status == 'error'" class="alert alert-danger" role="alert">
+                            <strong>Hubo un error al crearla  :(</strong>
+                        </div>
+
+                      <label for="nombre">Nombre</label>
+                      <input type="text" class="form-control" name="nombre" id="nombre" #nombre="ngModel" 
+                        [(ngModel)]="etiqueta.nombre" placeholder="" required>
+                      
+                      <small *ngIf="!nombre.valid && nombre.touched" class="invalid-feedback d-block">
+                        Nombre de etiqueta incorrecto
+                      </small>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="form-group">
+                      <label for="color">Color</label>
+                      <input type="color"
+                        class="form-control" name="color" id="color" aria-describedby="helpColor" 
+                        #color="ngModel" [(ngModel)]="etiqueta.color" placeholder="" required>
+                      
+                        <small *ngIf="!color.valid && color.touched" class="invalid-feedback d-block">
+                            Nombre de etiqueta incorrecto
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Nueva Etiqueta</button>
+            </div>
+        </form>
+      </div>
+    </div>
+</div>
+
+<div class="modal fade" id="newTask" tabindex="-1" role="dialog" aria-labelledby="newTaskLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newTaskLabel">Nueva Tarea</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form #taskForm="ngForm" (ngSubmit)="onNewTask(taskForm)">
+            <div class="modal-body">
+                <div class="container">
+                    <div class="form-group">
+                        <div *ngIf="statusTask == 'success'" class="alert alert-success" role="alert">
+                            <strong>Nueva Tarea Creada :)</strong>
+                        </div>
+
+                        <div *ngIf="statusTask == 'error'" class="alert alert-danger" role="alert">
+                            <strong>Hubo un error al crearla  :(</strong>
+                        </div>
+
+                      <label for="nombre">Descripción</label>
+                      <input type="text" class="form-control" name="nombre" id="nombre" #description="ngModel" 
+                        [(ngModel)]="task.description" placeholder="" required>
+                      
+                      <small *ngIf="!description.valid && description.touched" class="invalid-feedback d-block">
+                        Descripcion Incorrecto
+                      </small>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="form-group">
+                        <label for="idetiqueta">Etiqueta</label>
+                        <select class="form-control" name="etiqueta_id" id="etiqueta_id" #etiqueta_id="ngModel"
+                            [(ngModel)]="task.etiqueta_id" required>
+                            <option value="" selected disabled>Selecciona Etiqueta...</option>
+                            <option *ngFor="let etiqueta of etiquetas" value="{{etiqueta.id}}">{{etiqueta.nombre}}</option>
+                        </select>
+            
+                        <small *ngIf="!etiqueta_id.valid && etiqueta_id.touched" class="invalid-feedback d-block">
+                            Seleccion de Etiqueta Incorrecta
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Nueva Tarea</button>
+            </div>
+        </form>
+      </div>
     </div>
 </div>

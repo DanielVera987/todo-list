@@ -17,12 +17,14 @@ class TaskController extends Controller
     }
     /**
      * Display a listing of the resource.
-     *
+     *@param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tasks = Task::all()->load('etiqueta');
+        $user = $this->getIdentityUser($request);
+
+        $tasks = Task::where('user_id', $user->sub)->with('etiqueta')->get();
 
         return response()->json([
             'status' => 'success',

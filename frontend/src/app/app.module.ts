@@ -11,13 +11,15 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 import {UserService} from './services/user.service';
 import { IdentityGuard } from './services/identity.guard';
+import { NewEtiquetaComponent } from './components/new-etiqueta/new-etiqueta.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    DashboardComponent
+    DashboardComponent,
+    NewEtiquetaComponent
   ],
   imports: [
     BrowserModule,
